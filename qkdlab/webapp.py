@@ -190,11 +190,14 @@ function jobStrip(strip) {
   return strip.map((x, i) => '<div class="bit' + (!x.matched ? '' : x.error ? ' err' : ' keep') + '" title="round ' + i + '"></div>').join("");
 }
 function jobCard(name, info, res) {
-  let h = '<div class="qnjob"><h3>Job ' + name + ': ' + esc(info.role) + ' (' + info.rounds + ' rounds, ' + info.qubits + ' qubits, shots=1)</h3>';
+let h = '<div class="qnjob"><h3>Job ' + name + ': ' + esc(info.role) + ' (' + info.rounds + ' rounds, ' + info.qubits + ' qubits; ' + (res ? 'this result: ' + (res.shots ? res.shots + ' shots' : '1 shot') : 'plan: 1 shot, more is accepted') + ')</h3>';
   if (res) {
     const cal = res.calibration_passed ? ' Bit-order calibration passed.' : '';
-    h += '<div class="qnrow"><span><span class="tag qn">QNIVERSE job ' + esc(res.qniverse_job_id || "id not given") + ' (pasted counts)</span>' + res.errors + ' of ' + res.sifted + (res.wilson ? ' sifted bits differ' : ' expected mismatches among sifted bits') + ', QBER ' + pct(res.qber) + (res.wilson ? ', Wilson [' + pct(res.wilson[0]) + ', ' + pct(res.wilson[1]) + ']' : ' (' + esc(res.mode) + ')') + '</span></div>';
-    h += '<div class="qnrow"><span><span class="tag loc">LOCAL engine, same rounds</span>' + res.local.errors + ' of ' + res.local.sifted + ' sifted bits differ, QBER ' + pct(res.local.qber) + '</span></div>';
+    const qnTxt = res.wilson
+      ? res.errors + ' of ' + res.sifted + ' sifted bits differ, QBER ' + pct(res.qber) + ', Wilson [' + pct(res.wilson[0]) + ', ' + pct(res.wilson[1]) + ']'
+      : 'over ' + res.sifted + ' sifted rounds, the average mismatch probability between Alice and Bob is ' + pct(res.qber) + ' (measured from ' + res.shots + ' shots of the same ' + res.rounds + ' rounds, not ' + res.sifted + ' independent trials)';
+    h += '<div class="qnrow"><span><span class="tag qn">QNIVERSE job ' + esc(res.qniverse_job_id || "id not given") + '</span>' + qnTxt + '</span></div>';
+    h += '<div class="qnrow"><span><span class="tag loc">LOCAL engine, one sample of the same rounds</span>' + res.local.errors + ' of ' + res.local.sifted + ' sifted bits differ, QBER ' + pct(res.local.qber) + '</span></div>';
     h += '<div class="strip">' + jobStrip(res.strip) + '</div>';
     h += '<p class="compare">' + (res.high_error_rate ? 'Above the 11% demo rule.' : 'Below the 11% demo rule.') + cal + (res.eve && !res.reliable_detection ? ' Only ' + res.sifted + ' bits survived sifting, so this run shows the circuit working on Qniverse but is not a reliable detection.' : '') + ' Expected QBER for this exact set of rounds on an ideal backend: ' + pct(res.expected_qber) + ' (Eve gives about 25% only on average over many random rounds; this draw has Eve guessing right or wrong on specific rounds).' + (res.shots ? ' The ' + res.shots + ' shots repeat the same ' + res.rounds + ' rounds, so they cut measurement noise but not the luck of the round choices.' : '') + '</p>';
   }
@@ -208,7 +211,11 @@ async function loadQn() {
   const r = await fetch("/api/qniverse"); const d = await r.json();
   if (!d.plan) { $("qn-jobs").innerHTML = '<p class="compare">No plan found. Run <code>python -m qkdlab plan</code> first.</p>'; return; }
   const got = Object.keys(d.results).length;
-  if (got) $("qn-intro").textContent = "Showing real Qniverse counts you pasted, decoded by the same sifting code as the local engine. Each line is tagged with its source.";
+  if (got) {
+    const a = d.results.A, b = d.results.B;
+    const st = (a && a.calibration_passed ? "Job A (Eve off) calibration passed: bit order checked on this run. " : "") + (b ? "Job B (Eve on) result loaded." : "Job B (Eve on) is still pending, so no eavesdropper result from Qniverse yet.");
+    $("qn-intro").textContent = st + " Counts were pasted by a person and decoded by the same sifting code as the local engine. Each line is tagged with its source.";
+  }
   $("qn-jobs").innerHTML = Object.keys(d.plan.jobs).map(n => jobCard(n, d.plan.jobs[n], d.results[n])).join("");
   document.querySelectorAll("#qn-jobs button[data-job]").forEach(b => b.addEventListener("click", () => importJob(b.dataset.job)));
 }
