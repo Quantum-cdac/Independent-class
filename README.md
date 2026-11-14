@@ -31,6 +31,15 @@ python -m qkdlab run --rounds 48 --seed 20261114 --out evidence/demo-no-eve
 python -m qkdlab run --rounds 48 --seed 20261114 --eve --out evidence/demo-eve
 ```
 
+Or explore it interactively in your browser (same engine, no credits):
+
+```bash
+python -m qkdlab serve --port 8000   # then open http://localhost:8000
+```
+
+The dashboard lets you toggle the eavesdropper, change rounds and seed, and
+rerun - every click recomputes the full experiment with the verified engine.
+
 Each run writes `manifest.json` (every random choice, hash-sealed),
 `results.json` and a self-contained `report.html` you can open in any browser.
 
@@ -60,7 +69,8 @@ the same flow through the QSDK once you paste your API key.
 - `qkdlab/protocol.py` - sifting, QBER, detection threshold (classical only)
 - `qkdlab/emit_qasm.py`, `emit_qsdk.py`, `parse_backend.py` - Qniverse I/O
 - `qkdlab/report.py` - self-contained HTML report
-- `tests/` - 28 tests, `python -m unittest discover -s tests`
+- `qkdlab/webapp.py` - local interactive web dashboard (`serve`)
+- `tests/` - 32 tests, `python -m unittest discover -s tests`
 - `docs/` - problem/design, protocol, architecture, testing, AI disclosure
 - `evidence/` - demo runs and reports
 - `venue/` - Qniverse hosted-notebook demo
@@ -72,7 +82,7 @@ the same flow through the QSDK once you paste your API key.
 2. Show `evidence/demo-eve/report.html`: SAME rounds, high error rate flagged,
    Eve's-key panel. The paired seed makes it obvious only Eve changed.
 3. Re-run live with a new seed to prove nothing is canned.
-4. Open the test suite: 28 tests covering the engine, protocol, emitters,
+4. Open the test suite: 32 tests covering the engine, protocol, emitters,
    parsing, reproducibility - and an independent numpy density-matrix
    cross-check of every choice combination and of the emitted QASM.
 
