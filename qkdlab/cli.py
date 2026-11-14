@@ -97,6 +97,11 @@ def cmd_report(a):
     print(f"QBER={res.qber:.2%} high_error_rate={res.high_error_rate} -> {a.out}")
 
 
+def cmd_serve(a):
+    from .webapp import serve
+    serve(a.port)
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(prog="qkdlab", description=__doc__)
     sub = p.add_subparsers(required=True)
@@ -122,6 +127,9 @@ def main(argv=None):
     q.add_argument("--batch-size", type=int, default=None)
     q.add_argument("--out", default="report.html")
     q.set_defaults(fn=cmd_report)
+    w = sub.add_parser("serve", help="start the local interactive web dashboard (no credits)")
+    w.add_argument("--port", type=int, default=8000)
+    w.set_defaults(fn=cmd_serve)
     a = p.parse_args(argv)
     a.fn(a)
 
