@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "seed": 20261121,
+  "eve": false,
+  "round_count": 12,
+  "rounds": [
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": null
+    }
+  ],
+  "sha256": "42dbd41a45399c2583d063ae4c74935904cf5e4b72c2970a6cc00d1f6dec83e2"
+}
