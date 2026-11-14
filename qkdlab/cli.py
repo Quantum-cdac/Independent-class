@@ -3,6 +3,7 @@
   python -m qkdlab run --rounds 48 --seed 20261114 [--eve] [--out evidence/run1]
   python -m qkdlab emit-qasm --manifest M.json [--max-wires 24] --out batches/
   python -m qkdlab emit-qsdk --manifest M.json --out batch.py
+  python -m qkdlab plan [--out evidence/venue-plan]
   python -m qkdlab report --manifest M.json [--backend-output counts.txt ...] [--out report.html]
 """
 import argparse
@@ -97,6 +98,16 @@ def cmd_report(a):
     print(f"QBER={res.qber:.2%} high_error_rate={res.high_error_rate} -> {a.out}")
 
 
+def cmd_plan(a):
+    from .venue import build_plan
+    plan = build_plan(a.out)
+    print(f"seed={plan['seed']} total={plan['total_credits']} credits "
+          f"({plan['credits_per_job']}/job x {len(plan['jobs'])} jobs)")
+    for n, j in plan["jobs"].items():
+        print(f"job {n}: {j['role']} - {j['rounds']} rounds, {j['qubits']} qubits, shots=1 -> {j['qasm']}")
+    print(f"wrote plan to {a.out}/")
+
+
 def cmd_serve(a):
     from .webapp import serve
     serve(a.port)
@@ -127,6 +138,9 @@ def main(argv=None):
     q.add_argument("--batch-size", type=int, default=None)
     q.add_argument("--out", default="report.html")
     q.set_defaults(fn=cmd_report)
+    pl = sub.add_parser("plan", help="write the 2-job (10 credit) Qniverse validation plan")
+    pl.add_argument("--out", default="evidence/venue-plan")
+    pl.set_defaults(fn=cmd_plan)
     w = sub.add_parser("serve", help="start the local interactive web dashboard (no credits)")
     w.add_argument("--port", type=int, default=8000)
     w.set_defaults(fn=cmd_serve)
