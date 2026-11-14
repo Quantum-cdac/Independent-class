@@ -1,11 +1,21 @@
 {
   "job": "A",
   "source": "qniverse",
-  "qniverse_job_id": "unknown (not in the exported ZIP)",
+  "qniverse_job_id": "38081",
   "role": "calibration, Eve off",
   "eve": false,
   "rounds": 12,
   "seed": 20261121,
+  "provenance": {
+    "resource": "QACC_Cluster-CPU",
+    "backend": "qasm_simulator",
+    "noise_used": "No",
+    "status": "COMPLETED",
+    "created": "Nov 14, 2026 4:37 PM",
+    "usage": "00:00:09",
+    "editable_qiskit": "No",
+    "source": "user screenshot of the Qniverse job page; counts identical to the exported ZIP"
+  },
   "mode": "multi-shot (1024 shots on the same 12 rounds): average per-round mismatch probability",
   "shots": 1024,
   "sifted": 9,
