@@ -1,0 +1,90 @@
+{
+  "job": "A",
+  "source": "qniverse",
+  "qniverse_job_id": "unknown (not in the exported ZIP)",
+  "role": "calibration, Eve off",
+  "eve": false,
+  "rounds": 12,
+  "seed": 20261121,
+  "mode": "multi-shot (1024 shots on the same 12 rounds): average per-round mismatch probability",
+  "shots": 1024,
+  "sifted": 9,
+  "errors": 0.0,
+  "qber": 0.0,
+  "wilson": null,
+  "high_error_rate": false,
+  "threshold": 0.11,
+  "strip": [
+    {
+      "matched": false,
+      "error_prob": null,
+      "error": false
+    },
+    {
+      "matched": true,
+      "error_prob": 0.0,
+      "error": false
+    },
+    {
+      "matched": true,
+      "error_prob": 0.0,
+      "error": false
+    },
+    {
+      "matched": true,
+      "error_prob": 0.0,
+      "error": false
+    },
+    {
+      "matched": true,
+      "error_prob": 0.0,
+      "error": false
+    },
+    {
+      "matched": false,
+      "error_prob": null,
+      "error": false
+    },
+    {
+      "matched": true,
+      "error_prob": 0.0,
+      "error": false
+    },
+    {
+      "matched": true,
+      "error_prob": 0.0,
+      "error": false
+    },
+    {
+      "matched": true,
+      "error_prob": 0.0,
+      "error": false
+    },
+    {
+      "matched": true,
+      "error_prob": 0.0,
+      "error": false
+    },
+    {
+      "matched": false,
+      "error_prob": null,
+      "error": false
+    },
+    {
+      "matched": true,
+      "error_prob": 0.0,
+      "error": false
+    }
+  ],
+  "calibration_passed": true,
+  "local": {
+    "source": "local-exact-engine",
+    "sifted": 9,
+    "errors": 0,
+    "qber": 0.0,
+    "high_error_rate": false
+  },
+  "expected_qber": 0.0,
+  "reliable_detection": false,
+  "credits_spent_note": "5 credits per job (published CPU price)"
+}
