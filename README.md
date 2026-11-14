@@ -62,6 +62,21 @@ Qniverse jobs consume account credits (CPU simulation: 5 credits/job per the
 Qniverse release notes). The venue notebook `venue/qkd-demo.ipynb` automates
 the same flow through the QSDK once you paste your API key.
 
+### Two-job validation plan (10 credits at the published price)
+
+```bash
+python -m qkdlab plan          # writes evidence/venue-plan/ (job A, job B, plan.json)
+```
+
+- **Job A** (`job-A.qasm`, Eve off, 12 qubits): calibration. Bob's bit must equal Alice's on every
+  basis-matching round, which checks the counts bit order.
+- **Job B** (`job-B.qasm`, Eve on, 24 qubits): same Alice/Bob choices plus Eve's coherent ancilla.
+  About 9 sifted bits, so it shows the circuit running on Qniverse, not a reliable detection.
+
+Paste each job's counts into the dashboard's "Qniverse results" card (or `python -m qkdlab serve`
+and open the page). Results are tagged QNIVERSE or LOCAL. Job B is refused until job A passes.
+The dashboard only decodes pasted counts; it never submits jobs or spends credits.
+
 ## Layout
 
 - `qkdlab/rounds.py` - seeded per-round choices (Alice/Bob/Eve bits and bases)
@@ -70,7 +85,8 @@ the same flow through the QSDK once you paste your API key.
 - `qkdlab/emit_qasm.py`, `emit_qsdk.py`, `parse_backend.py` - Qniverse I/O
 - `qkdlab/report.py` - self-contained HTML report
 - `qkdlab/webapp.py` - local interactive web dashboard (`serve`)
-- `tests/` - 32 tests, `python -m unittest discover -s tests`
+- `qkdlab/venue.py` - two-job Qniverse plan and counts importer
+- `tests/` - 43 tests, `python -m unittest discover -s tests`
 - `docs/` - problem/design, protocol, architecture, testing, AI disclosure
 - `evidence/` - demo runs and reports
 - `venue/` - Qniverse hosted-notebook demo
@@ -82,7 +98,7 @@ the same flow through the QSDK once you paste your API key.
 2. Show `evidence/demo-eve/report.html`: SAME rounds, high error rate flagged,
    Eve's-key panel. The paired seed makes it obvious only Eve changed.
 3. Re-run live with a new seed to prove nothing is canned.
-4. Open the test suite: 32 tests covering the engine, protocol, emitters,
+4. Open the test suite: 43 tests covering the engine, protocol, emitters,
    parsing, reproducibility - and an independent numpy density-matrix
    cross-check of every choice combination and of the emitted QASM.
 
