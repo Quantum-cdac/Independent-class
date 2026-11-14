@@ -17,6 +17,9 @@ def parse_counts(text: str) -> dict[str, int]:
     if text.startswith("{"):
         try:
             raw = json.loads(text)
+            # Qniverse job export (output.txt): {"probability": {bits: n}, "shots": N}
+            if isinstance(raw.get("probability"), dict):
+                raw = raw["probability"]
             return {str(k).strip(): int(v) for k, v in raw.items()}
         except json.JSONDecodeError:
             pass  # fall through to the tolerant pair parser
