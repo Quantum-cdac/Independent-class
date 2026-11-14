@@ -191,3 +191,10 @@ class TestMeasureLast(unittest.TestCase):
         self.assertTrue(all(l.startswith("measure") for l in b[first:]))
         gates = [l for l in b if not l.startswith("measure")]
         self.assertEqual(gates, [l for l in a if not l.startswith("measure")])
+
+
+class TestQniverseExportFormat(unittest.TestCase):
+    def test_parse_counts_reads_job_export_wrapper(self):
+        from qkdlab.parse_backend import parse_counts
+        text = json.dumps({"probability": {"0101": 3, "1111": 5}, "shots": 8})
+        self.assertEqual(parse_counts(text), {"0101": 3, "1111": 5})
