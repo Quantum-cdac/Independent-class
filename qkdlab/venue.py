@@ -22,7 +22,7 @@ import json
 import os
 
 from .emit_qasm import bits_from_counts_key, emit_qasm, wires_per_round
-from .engine import simulate_run
+from .engine import round_probabilities, simulate_run
 from .parse_backend import parse_counts, rounds_from_counts, selfcheck, verify_against_manifest
 from .protocol import DETECTION_THRESHOLD, sift
 from .rounds import load_manifest, make_rounds, save_manifest
@@ -84,6 +84,22 @@ def load_plan(plan_dir: str) -> dict:
         return json.load(fh)
 
 
+def expected_qber(rounds) -> float:
+    """Exact expected error rate for THIS manifest on an ideal backend: the
+    average over basis-matching rounds of P(Bob's bit != Alice's bit).
+    With Eve on this is 0.5 for each sifted round where Eve guessed the
+    wrong basis and 0 where she guessed right, so it is 25% only on average
+    over random basis choices, not for one 12-round draw."""
+    errs = []
+    for spec in rounds:
+        if spec.alice_basis != spec.bob_basis:
+            continue
+        probs = round_probabilities(spec)
+        p_bob1 = probs[1] + probs[3]
+        errs.append((1 - p_bob1) if spec.alice_bit else p_bob1)
+    return round(sum(errs) / len(errs), 12) if errs else 0.0
+
+
 def _result_path(results_dir: str, job: str) -> str:
     return os.path.join(results_dir, f"job-{job}-result.json")
 
@@ -139,6 +155,7 @@ def import_counts(plan_dir: str, results_dir: str, job: str, counts_text: str,
         "local": {"source": "local-exact-engine", "sifted": len(lres.sift_indices),
                   "errors": lres.errors, "qber": lres.qber,
                   "high_error_rate": lres.high_error_rate},
+        "expected_qber": expected_qber(rounds),
         "reliable_detection": len(res.sift_indices) >= 20,
         "credits_spent_note": f"{CREDITS_PER_JOB} credits per job (published CPU price)",
     }
@@ -191,7 +208,7 @@ def _import_multishot(plan_dir, results_dir, job, info, rounds, eve, seed,
     out = {
         "job": job, "source": "qniverse", "qniverse_job_id": qniverse_job_id.strip(),
         "role": info["role"], "eve": eve, "rounds": len(rounds), "seed": seed,
-        "mode": f"multi-shot ({shots} shots): per-round error probability averaged over sifted rounds",
+        "mode": f"multi-shot ({shots} shots on the same {len(rounds)} rounds): average per-round mismatch probability",
         "shots": shots, "sifted": len(matched),
         "errors": round(sum(p_err), 2), "qber": qber, "wilson": None,
         "high_error_rate": qber > DETECTION_THRESHOLD, "threshold": DETECTION_THRESHOLD,
@@ -199,6 +216,7 @@ def _import_multishot(plan_dir, results_dir, job, info, rounds, eve, seed,
         "local": {"source": "local-exact-engine", "sifted": len(lres.sift_indices),
                   "errors": lres.errors, "qber": lres.qber,
                   "high_error_rate": lres.high_error_rate},
+        "expected_qber": expected_qber(rounds),
         "reliable_detection": len(matched) >= 20,
         "credits_spent_note": f"{CREDITS_PER_JOB} credits per job (published CPU price)",
     }
