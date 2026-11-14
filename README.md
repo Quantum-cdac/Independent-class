@@ -77,6 +77,25 @@ Paste each job's counts into the dashboard's "Qniverse results" card (or `python
 and open the page). Results are tagged QNIVERSE or LOCAL. Job B is refused until job A passes.
 The dashboard only decodes pasted counts; it never submits jobs or spends credits.
 
+### Results from real Qniverse jobs (14 Nov 2026)
+
+Both jobs ran on resource QACC_Cluster-CPU, backend qasm_simulator, noise off, 1024 shots each.
+Raw exports and decoded results are in `evidence/qniverse/`.
+
+| Job | Qniverse job ID | Sifted rounds | Qniverse mean mismatch | Exact expected |
+| --- | --- | --- | --- | --- |
+| A (Eve off, calibration) | 38081 | 9 of 12 | 0.00% | 0.00% |
+| B (Eve on) | 38088 | 9 of 12 | 39.84% | 38.89% |
+
+- Job A passed the bit-order check, so job B was decoded with the same order.
+- Expected is exact for these fixed rounds on an ideal backend. It is not 25%: 25% is only the average
+  over many random rounds, and here Eve guessed wrong on 7 of the 9 sifted rounds.
+- The 1024 shots reduce, but do not eliminate, measurement noise. They repeat the same 12 rounds, so they
+  do not change which rounds Eve got right or wrong.
+- This is a demonstration that the circuits run on Qniverse. 9 sifted bits is not reliable eavesdropper
+  detection, a noiseless simulator is not a security test, and nothing here claims rule compliance or marks.
+- The job pages did not show credits charged, so the credit cost is not recorded.
+
 ## Layout
 
 - `qkdlab/rounds.py` - seeded per-round choices (Alice/Bob/Eve bits and bases)
