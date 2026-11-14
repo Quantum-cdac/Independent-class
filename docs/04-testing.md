@@ -1,13 +1,13 @@
 # Test plan and results
 
-Suite: `python -m unittest discover -s tests` — 32 tests. Core is standard
+Suite: `python -m unittest discover -s tests` — 43 tests. Core is standard
 library only; the independent cross-check additionally uses numpy and skips
 cleanly without it.
 
 Latest run (2026-11-14, Python 3.10):
 
 ```
-Ran 32 tests in 0.148s
+Ran 43 tests in 0.7s
 
 OK
 ```
