@@ -176,6 +176,53 @@ class TestCliEndToEnd(unittest.TestCase):
                           open(os.path.join(d, "report.html")).read())
 
 
+class TestWebapp(unittest.TestCase):
+    def test_run_experiment_matches_engine(self):
+        from qkdlab.webapp import run_experiment
+        d = run_experiment(48, SEED, False)
+        self.assertEqual(d["rounds"], 48)
+        self.assertEqual(d["errors"], 0)
+        self.assertEqual(len(d["strip"]), 48)
+        self.assertEqual(sum(1 for s in d["strip"] if s["matched"]), d["sifted"])
+        self.assertFalse(d["high_error_rate"])
+
+    def test_run_experiment_eve_paired(self):
+        from qkdlab.webapp import run_experiment
+        off = run_experiment(48, SEED, False)
+        on = run_experiment(48, SEED, True)
+        # Paired design: same sifted positions, only Eve's presence differs.
+        self.assertEqual(off["sifted"], on["sifted"])
+        self.assertGreater(on["qber"], 0.10)
+        self.assertTrue(on["high_error_rate"])
+        self.assertIn("eve_qber", on)
+
+    def test_run_experiment_clamps_rounds(self):
+        from qkdlab.webapp import run_experiment
+        self.assertEqual(run_experiment(99999, SEED, False)["rounds"], 500)
+        self.assertEqual(run_experiment(1, SEED, False)["rounds"], 8)
+
+    def test_http_endpoints(self):
+        import json, threading, urllib.request
+        from http.server import HTTPServer
+        from qkdlab.webapp import _Handler
+        srv = HTTPServer(("127.0.0.1", 0), _Handler)
+        port = srv.server_address[1]
+        threading.Thread(target=srv.serve_forever, daemon=True).start()
+        try:
+            page = urllib.request.urlopen(f"http://127.0.0.1:{port}/").read().decode()
+            self.assertIn("interactive BB84 demo", page)
+            d = json.loads(urllib.request.urlopen(
+                f"http://127.0.0.1:{port}/api/run?rounds=48&seed={SEED}&eve=1").read())
+            self.assertTrue(d["high_error_rate"])
+            self.assertEqual(d["sifted"], 23)
+            bad = urllib.request.urlopen(
+                f"http://127.0.0.1:{port}/api/run?rounds=abc",)
+        except urllib.error.HTTPError as e:
+            self.assertEqual(e.code, 400)
+        finally:
+            srv.shutdown()
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
 
