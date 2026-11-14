@@ -1,0 +1,297 @@
+{
+  "version": 1,
+  "seed": 20261114,
+  "eve": true,
+  "round_count": 48,
+  "rounds": [
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": 0
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": 1
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": 0
+    }
+  ],
+  "sha256": "e7be49e5628ec3c00344adb9d009ff436d384b47bd684a108e10e6be5c83b799"
+}

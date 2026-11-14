@@ -1,0 +1,297 @@
+{
+  "version": 1,
+  "seed": 20261114,
+  "eve": false,
+  "round_count": 48,
+  "rounds": [
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 0,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 0,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 1,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 0,
+      "bob_basis": 1,
+      "eve_basis": null
+    },
+    {
+      "alice_bit": 0,
+      "alice_basis": 1,
+      "bob_basis": 1,
+      "eve_basis": null
+    }
+  ],
+  "sha256": "abbf5d7deae970a901f1cc138756b4084ce97b9949d22c5ece3a84a651990ff7"
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QKD-Lab run report</title>
+<style>
+ body { font-family: system-ui, sans-serif; margin: 2rem auto; max-width: 780px; color: #2c3e50; padding: 0 1rem; }
+ .banner { padding: 1rem 1.2rem; border-radius: 8px; font-size: 1.25rem; font-weight: 700; }
+ .good { background: #eafaf1; color: #1e8449; border: 1px solid #27ae60; }
+ .bad { background: #fdedec; color: #c0392b; border: 1px solid #c0392b; }
+ table { border-collapse: collapse; font-size: 0.85rem; }
+ td, th { border: 1px solid #d5dbdb; padding: 2px 8px; text-align: center; }
+ tr.err td { background: #fdedec; } tr.ok td { background: #eafaf1; } tr.drop td { color: #95a5a6; }
+ .muted { color: #7f8c8d; font-size: 0.85rem; }
+ dl { display: grid; grid-template-columns: 220px 1fr; row-gap: 4px; }
+ dt { font-weight: 600; } dd { margin: 0; }
+</style></head><body>
+<h1>QKD-Lab &mdash; BB84 run report</h1>
+<div class="banner bad">HIGH ERROR RATE: possible eavesdropping or channel noise</div>
+<h2>Quantum bit error rate (QBER)</h2>
+
+<svg width="560" height="46" role="img" aria-label="QBER gauge">
+  <rect x="0" y="12" width="560" height="22" fill="#ecf0f1" rx="4"/>
+  <rect x="0" y="12" width="267.8" height="22" fill="#c0392b" rx="4"/>
+  <line x1="135.5" y1="6" x2="135.5" y2="40" stroke="#2c3e50" stroke-width="2"/>
+  <text x="141.5" y="10" font-size="11" fill="#2c3e50">illustrative demo rule 11%</text>
+</svg>
+<dl>
+ <dt>Observed errors</dt><dd>5 of 23 sifted bits (21.74%)</dd>
+ <dt>True error rate (95% Wilson interval)</dt><dd>[9.66%, 41.90%]</dd>
+ <dt>Rounds executed</dt><dd>48</dd>
+ <dt>Sifted key length</dt><dd>23 bits</dd>
+ <dt>Scenario configured</dt><dd>eavesdropper simulation ON (intercept-resend, coherent model) - the detector only sees the error rate, not this setting</dd>
+ <dt>Seed</dt><dd>20261114</dd>
+ <dt>Backend</dt><dd>local-exact-engine</dd>
+ <dt>Job IDs</dt><dd>n/a (local exact engine)</dd>
+</dl>
+<h2>Round-by-round sifting</h2>
+<table>
+<tr><th>#</th><th>Alice bit</th><th>Alice basis</th><th>Bob basis</th><th>Eve basis</th><th>Bob got</th><th>sift</th><th>check</th></tr>
+<tr class="drop"><td>0</td><td>1</td><td>Z</td><td>X</td><td>Z</td><td>-</td><td>drop</td><td>-</td></tr><tr class="ok"><td>1</td><td>0</td><td>Z</td><td>Z</td><td>Z</td><td>0</td><td>keep</td><td>ok</td></tr><tr class="ok"><td>2</td><td>1</td><td>X</td><td>X</td><td>X</td><td>1</td><td>keep</td><td>ok</td></tr><tr class="drop"><td>3</td><td>1</td><td>X</td><td>Z</td><td>X</td><td>-</td><td>drop</td><td>-</td></tr><tr class="ok"><td>4</td><td>0</td><td>X</td><td>X</td><td>X</td><td>0</td><td>keep</td><td>ok</td></tr><tr class="drop"><td>5</td><td>1</td><td>Z</td><td>X</td><td>Z</td><td>-</td><td>drop</td><td>-</td></tr><tr class="ok"><td>6</td><td>1</td><td>X</td><td>X</td><td>X</td><td>1</td><td>keep</td><td>ok</td></tr><tr class="drop"><td>7</td><td>1</td><td>Z</td><td>X</td><td>X</td><td>-</td><td>drop</td><td>-</td></tr><tr class="ok"><td>8</td><td>0</td><td>X</td><td>X</td><td>X</td><td>0</td><td>keep</td><td>ok</td></tr><tr class="ok"><td>9</td><td>0</td><td>Z</td><td>Z</td><td>Z</td><td>0</td><td>keep</td><td>ok</td></tr><tr class="drop"><td>10</td><td>1</td><td>X</td><td>Z</td><td>Z</td><td>-</td><td>drop</td><td>-</td></tr><tr class="drop"><td>11</td><td>0</td><td>X</td><td>Z</td><td>X</td><td>-</td><td>drop</td><td>-</td></tr><tr class="drop"><td>12</td><td>1</td><td>X</td><td>Z</td><td>Z</td><td>-</td><td>drop</td><td>-</td></tr><tr class="drop"><td>13</td><td>0</td><td>X</td><td>Z</td><td>Z</td><td>-</td><td>drop</td><td>-</td></tr><tr class="ok"><td>14</td><td>0</td><td>X</td><td>X</td><td>Z</td><td>0</td><td>keep</td><td>ok</td></tr><tr class="err"><td>15</td><td>0</td><td>X</td><td>X</td><td>Z</td><td>1</td><td>keep</td><td>ERR</td></tr><tr class="ok"><td>16</td><td>0</td><td>X</td><td>X</td><td>X</td><td>0</td><td>keep</td><td>ok</td></tr><tr class="drop"><td>17</td><td>0</td><td>X</td><td>Z</td><td>Z</td><td>-</td><td>drop</td><td>-</td></tr><tr class="ok"><td>18</td><td>1</td><td>Z</td><td>Z</td><td>X</td><td>1</td><td>keep</td><td>ok</td></tr><tr class="drop"><td>19</td><td>0</td><td>Z</td><td>X</td><td>Z</td><td>-</td><td>drop</td><td>-</td></tr><tr class="ok"><td>20</td><td>1</td><td>X</td><td>X</td><td>X</td><td>1</td><td>keep</td><td>ok</td></tr><tr class="drop"><td>21</td><td>0</td><td>Z</td><td>X</td><td>Z</td><td>-</td><td>drop</td><td>-</td></tr><tr class="drop"><td>22</td><td>1</td><td>X</td><td>Z</td><td>X</td><td>-</td><td>drop</td><td>-</td></tr><tr class="drop"><td>23</td><td>1</td><td>Z</td><td>X</td><td>X</td><td>-</td><td>drop</td><td>-</td></tr><tr class="ok"><td>24</td><td>1</td><td>X</td><td>X</td><td>Z</td><td>1</td><td>keep</td><td>ok</td></tr><tr class="drop"><td>25</td><td>0</td><td>X</td><td>Z</td><td>Z</td><td>-</td><td>drop</td><td>-</td></tr><tr class="ok"><td>26</td><td>1</td><td>X</td><td>X</td><td>Z</td><td>1</td><td>keep</td><td>ok</td></tr><tr class="drop"><td>27</td><td>1</td><td>Z</td><td>X</td><td>Z</td><td>-</td><td>drop</td><td>-</td></tr><tr class="err"><td>28</td><td>0</td><td>Z</td><td>Z</td><td>X</td><td>1</td><td>keep</td><td>ERR</td></tr><tr class="drop"><td>29</td><td>1</td><td>X</td><td>Z</td><td>Z</td><td>-</td><td>drop</td><td>-</td></tr><tr class="drop"><td>30</td><td>1</td><td>X</td><td>Z</td><td>Z</td><td>-</td><td>drop</td><td>-</td></tr><tr class="drop"><td>31</td><td>0</td><td>X</td><td>Z</td><td>X</td><td>-</td><td>drop</td><td>-</td></tr>
+</table>
+<p class="muted">Showing first 32 rounds. Bases: Z = rectilinear, X = diagonal. Rounds where the bases differ are dropped.</p>
+
+<h2>What Eve learned</h2>
+<p>Eve's own sifted copy disagrees with Alice on 26.1% of bits - her interference is exactly what Bob's error rate reveals.</p>
+<p class="muted">QKD-Lab is an educational BB84 simulation. The 11% rule is an
+illustrative classroom threshold, not a security certificate: a high error rate can come
+from an eavesdropper or from noise, and a clean run bounds risk rather than proving it
+absent. This tool does not provide production key distribution, error correction,
+privacy amplification or a security proof.</p>
+</body></html>
