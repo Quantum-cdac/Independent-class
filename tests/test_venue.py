@@ -198,3 +198,20 @@ class TestQniverseExportFormat(unittest.TestCase):
         from qkdlab.parse_backend import parse_counts
         text = json.dumps({"probability": {"0101": 3, "1111": 5}, "shots": 8})
         self.assertEqual(parse_counts(text), {"0101": 3, "1111": 5})
+
+
+class TestExpectedQber(unittest.TestCase):
+    def test_eve_off_zero_and_eve_on_matches_wrong_basis_fraction(self):
+        from qkdlab.rounds import make_rounds
+        self.assertEqual(venue.expected_qber(make_rounds(24, False, 5)), 0.0)
+        rounds = make_rounds(40, True, 9)
+        m = [r for r in rounds if r.alice_basis == r.bob_basis]
+        wrong = sum(1 for r in m if r.eve_basis != r.alice_basis)
+        self.assertAlmostEqual(venue.expected_qber(rounds), 0.5 * wrong / len(m), places=9)
+
+    def test_import_reports_expected_qber(self):
+        with tempfile.TemporaryDirectory() as d:
+            plan_dir, res_dir = os.path.join(d, "p"), os.path.join(d, "r")
+            venue.build_plan(plan_dir)
+            a = venue.import_counts(plan_dir, res_dir, "A", fake_counts(plan_dir, "A"))
+            self.assertEqual(a["expected_qber"], 0.0)
