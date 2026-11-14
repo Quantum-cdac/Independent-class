@@ -115,7 +115,7 @@ def stored_results(results_dir: str) -> dict:
 
 
 def import_counts(plan_dir: str, results_dir: str, job: str, counts_text: str,
-                  qniverse_job_id: str = "") -> dict:
+                  qniverse_job_id: str = "", provenance: dict | None = None) -> dict:
     """Decode counts pasted from a Qniverse job into a source-labelled result,
     next to the local engine's answer for the very same manifest."""
     if job not in JOBS:
@@ -133,7 +133,7 @@ def import_counts(plan_dir: str, results_dir: str, job: str, counts_text: str,
     shots = sum(counts.values())
     if shots > 1:
         return _import_multishot(plan_dir, results_dir, job, info, rounds, eve, seed,
-                                 counts, shots, qniverse_job_id)
+                                 counts, shots, qniverse_job_id, provenance)
     bob, eve_bits = rounds_from_counts(counts, len(rounds), eve)
     calibration = None
     if job == "A":
@@ -148,6 +148,7 @@ def import_counts(plan_dir: str, results_dir: str, job: str, counts_text: str,
     out = {
         "job": job, "source": "qniverse", "qniverse_job_id": qniverse_job_id.strip(),
         "role": info["role"], "eve": eve, "rounds": len(rounds), "seed": seed,
+        "provenance": provenance or {},
         "sifted": len(res.sift_indices), "errors": res.errors, "qber": res.qber,
         "wilson": [res.wilson_low, res.wilson_high],
         "high_error_rate": res.high_error_rate, "threshold": res.threshold,
@@ -168,7 +169,7 @@ def import_counts(plan_dir: str, results_dir: str, job: str, counts_text: str,
 
 
 def _import_multishot(plan_dir, results_dir, job, info, rounds, eve, seed,
-                      counts, shots, qniverse_job_id):
+                      counts, shots, qniverse_job_id, provenance=None):
     """The composer may run many shots instead of one. Each round is an
     independent qubit, so the per-qubit frequencies are exact estimates of
     Bob's bit probabilities. The error figure is then the average probability
@@ -208,6 +209,7 @@ def _import_multishot(plan_dir, results_dir, job, info, rounds, eve, seed,
     out = {
         "job": job, "source": "qniverse", "qniverse_job_id": qniverse_job_id.strip(),
         "role": info["role"], "eve": eve, "rounds": len(rounds), "seed": seed,
+        "provenance": provenance or {},
         "mode": f"multi-shot ({shots} shots on the same {len(rounds)} rounds): average per-round mismatch probability",
         "shots": shots, "sifted": len(matched),
         "errors": round(sum(p_err), 2), "qber": qber, "wilson": None,
