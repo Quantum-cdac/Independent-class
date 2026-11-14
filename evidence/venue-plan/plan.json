@@ -1,0 +1,25 @@
+{
+  "seed": 20261121,
+  "credits_per_job": 5,
+  "total_credits": 10,
+  "jobs": {
+    "A": {
+      "role": "calibration, Eve off",
+      "eve": false,
+      "rounds": 12,
+      "qubits": 12,
+      "shots": 1,
+      "manifest": "job-A-manifest.json",
+      "qasm": "job-A.qasm"
+    },
+    "B": {
+      "role": "Eve on (coherent intercept-resend)",
+      "eve": true,
+      "rounds": 12,
+      "qubits": 24,
+      "shots": 1,
+      "manifest": "job-B-manifest.json",
+      "qasm": "job-B.qasm"
+    }
+  }
+}
